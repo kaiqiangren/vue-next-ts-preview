@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>全新上传组件-Vue版本</title>
+</head>
+<body>
+  <noscript>
+    <strong>We're sorry but doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div>
+    <h1>新版上传--Vue重构版本</h1>
+    <h2>一、使用方式</h2>
+    <div id="upload-button" style="width: 200px;height: 100px;background: #f0ff62">
+      PC端点击上传
+    </div>
+    <div id="upload-button-mobile1" style="height: 30px;width: 120px;background:#69d8ff;margin-top: 10px">
+      移动端上传
+    </div>
+    <h2>二、配置项说明</h2>
+    <table cellspacing="0" border="1">
+      <thead>
+        <tr>
+          <th style="width: 50px">序号</th>
+          <th style="min-width: 100px">配置项</th>
+          <th style="min-width: 300px">说明</th>
+          <th style="min-width: 150px">备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>env</td>
+          <td>
+            环境选择:
+            <div>pc -> PC端</div>
+            <div>mobile -> 移动端</div>
+          </td>
+          <td>默认值: pc , 可选值： pc 、 mobile</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>el</td>
+          <td>
+            触发上传选择文件的自定义元素
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>accept</td>
+          <td>
+            可选择的上传文件类型
+          </td>
+          <td>默认值: * （全部文件可上传）</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>multiple</td>
+          <td>
+            文件是否可多选
+          </td>
+          <td>默认值: false</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>limit</td>
+          <td>
+            最大同时上传文件数量，超过此设定的所选文件会被自动忽略
+          </td>
+          <td>默认值：3</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>chunkSize</td>
+          <td>
+            上传分片大小（单位）byte
+          </td>
+          <td>默认值：5M，即 1024 * 1024 * 5 byte</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>getDetail</td>
+          <td>
+            是否在上传成功后，获取文件详情
+          </td>
+          <td>默认值：false</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>三、事件说明</h2>
+    <table cellspacing="0" border="1">
+      <thead>
+      <tr>
+        <th style="width: 50px">序号</th>
+        <th style="min-width: 100px">事件名称</th>
+        <th style="min-width: 300px">说明</th>
+        <th style="min-width: 150px">回调参数</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>1</td>
+        <td>progress</td>
+        <td>
+          分片上传过程事件
+        </td>
+        <td>
+          <div>(loaded, file, response, index)</div>
+          <div>
+            loaded: 上传进度百分比:number
+          </div>
+          <div>
+            response: 业务响应数据
+          </div>
+          <div>
+            file: 文件:File，包含md5、loaded
+          </div>
+          <div>
+            index: 文件上传列表索引:number
+          </div>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>md5</td>
+        <td>
+          文件上传前，获取完md5值后的事件
+        </td>
+        <td>files:所选文件列表</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>success</td>
+        <td>
+          文件上传成功
+        </td>
+        <td>
+          (file,response, index)
+          <div>file:文件:File，包含md5、loaded</div>
+          <div>
+            response: 业务响应数据
+          </div>
+          <div>
+            index: 文件上传列表索引:number
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>pause</td>
+        <td>
+          上传过程中手动点击暂停，或者网络异常造成的暂停事件
+        </td>
+        <td>
+          (file,response, index)
+          <div>file:文件:File，包含md5、loaded</div>
+          <div>
+            response: 业务响应数据
+          </div>
+          <div>
+            index: 文件上传列表索引:number
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>detail</td>
+        <td>
+          文件上传成功后，获取文件详情
+        </td>
+        <td>
+          (fileDetail, index)
+          <div>
+            fileDetail: 文件的详细信息
+          </div>
+          <div>
+            index: 文件上传列表索引:number
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+<!--  <script src="./uploader.js"></script>-->
+<!--  <script src="pc/example1.js"></script>-->
+<!--  <script src="mobile/example1.js"></script>-->
+  <script>
+    var script = document.createElement('script')
+    script.src = "pc/example1.js"
+    document.body.appendChild(script)
+  </script>
+</body>
+</html>

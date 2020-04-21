@@ -1,14 +1,3 @@
-# 使用方式
-## 一、安装
-```npm
-npm install lzx-uploader
-```
-## 二、使用方式
-```javascript
-import { Uploader } from 'lzx-uploader'
-```
-
-```javascript
 const uploader = new Uploader({
   el:document.getElementById("upload-button"), // 用于触发上传选择的元素
   env: 'pc', // pc 端 mobile 移动端
@@ -19,22 +8,21 @@ const uploader = new Uploader({
   getDetail:true // 是否获取文件详情
 })
 // loaded 上传的文件对应的进度百分比(0--100) number类型
-uploader.$on('progress', (loaded, file, response, index) => {
-  console.log('progress',loaded, file, response, index)
+uploader.$on('progress', (loaded, file, index) => {
+  console.log('progress',loaded, file, index)
 })
 uploader.$on('md5', (files) => {
   console.log('md5', files)
 })
 // 上传完成
-uploader.$on('success', (file, response, index) => {
-  console.log('success', file, response, index)
+uploader.$on('success', (file, index) => {
+  console.log('success', file, index)
 })
 // 上传暂停
-uploader.$on('pause', (file, response, index) => {
-  console.log('pause', file, response, index)
+uploader.$on('pause', (file, index) => {
+  console.log('pause', file, index)
 })
 // 获取文件上传成功后的详细信息，需要设置getDetail为true才会触发此事件
-uploader.$on('detail', (fileDetail, response,index) => {
-  console.log('detail', fileDetail, response, index)
+uploader.$on('detail', (fileDetail, index) => {
+  console.log('detail', fileDetail, index)
 })
-```
