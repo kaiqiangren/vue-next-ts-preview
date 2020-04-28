@@ -1,42 +1,25 @@
 <template>
-  <img src="./logo.png">
-  <h1>Hello Vue 3!</h1>
-  <button @click="inc">Clicked {{ count }} times.</button>
-  {{count2}}
+  <div id="box">
+    <router-view/>
+    <bottom-nav></bottom-nav>
+  </div>
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue'
-
+import BottomNav from "@/components/nav/bottomNav"
 export default {
-  setup(props, { attrs }) {
-    const count = ref(0)
-    const count2 = ref(0)
-    const inc = () => {
-      count.value++
-      count2.value++
-    }
-    onMounted(() => {
-      console.log('mounted')
-    })
-
-    onUnmounted(() => {
-      console.log('unmounted')
-    })
-    return {
-      count,
-      count2,
-      inc
-    }
+  name: 'App',
+  components: {
+    BottomNav
   }
 }
 </script>
 
-<style scoped>
-img {
-  width: 200px;
-}
-h1 {
-  font-family: Arial, Helvetica, sans-serif;
-}
+<style>
+  body {
+    background: #f6f6f6;
+  }
+  #box {
+    overflow-x: hidden;
+  }
 </style>
