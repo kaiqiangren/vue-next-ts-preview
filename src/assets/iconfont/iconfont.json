@@ -6,6 +6,13 @@
   "description": "知乎demo项目",
   "glyphs": [
     {
+      "icon_id": "1725607",
+      "name": "对",
+      "font_class": "dui",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
       "icon_id": "166640",
       "name": "首页",
       "font_class": "shouye",

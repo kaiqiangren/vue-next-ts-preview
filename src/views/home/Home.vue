@@ -31,8 +31,10 @@ export default {
     route.beforeEach((to, from, next) => {
       if (to.meta.index < from.meta.index) {
         transitionName.value = 'left'
-      } else {
+      } else if (to.meta.index > from.meta.index){
         transitionName.value = 'right'
+      } else {
+        transitionName.value = ''
       }
       next()
     })

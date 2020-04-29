@@ -1,4 +1,4 @@
 import { ref } from 'vue'
-export const transitionName = ref('left')
+export const transitionName = ref('')
 
 
