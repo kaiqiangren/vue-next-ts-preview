@@ -30,14 +30,15 @@
 
 <script>
 import { ref } from 'vue'
-// 目前路由的使用方式需要手动引入
-import router from '@/router/index'
+// 路由的使用，通过useRouter获取app所provide的路由
+import { useRouter } from 'vue-router'
 import Icon from "@/components/icon/icon";
 export default {
   name: 'topNav',
   components: {Icon},
   setup() {
     const defaultActive = ref(1)
+
     const navList = ref([
       {
         name: '关注',
@@ -56,7 +57,7 @@ export default {
         path: '/pneumonia'
       }
     ])
-
+    const router = useRouter()
     const handleSelectNav = (index, item) => {
       defaultActive.value = index
       router.push({
