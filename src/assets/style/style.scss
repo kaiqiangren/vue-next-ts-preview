@@ -1,0 +1,27 @@
+.left-enter-active {
+  transition: transform .3s;
+  transform: translateX(100%);
+}
+.left-leave-active {
+  transition: transform .3s;
+}
+.left-enter-to {
+  transform: translateX(0);
+}
+.left-leave-to {
+  transform: translateX(100%);
+}
+
+.right-enter-active {
+  transition: transform .5s;
+  transform: translateX(-100%);
+}
+.right-leave-active {
+  transition: transform .5s;
+}
+.right-enter-to {
+  transform: translateX(0);
+}
+.right-leave-to {
+  transform: translateX(-100%);
+}

@@ -91,7 +91,6 @@ export default {
       .nav-top-middle {
         box-sizing: border-box;
         padding: 9px 0;
-        box-sizing: border-box;
         text-align: left;
         .nav-top-search {
           background: #f6f6f6;
