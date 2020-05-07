@@ -29,7 +29,7 @@ export default {
         isAuth: false // 是否认证
       },
       {
-        title: '如果学习Vue3.0?',
+        title: '学习Vue3.0?',
         content: '快别更新了，学不动了！',
         logoUrl: '',
         logoContext:'',
@@ -37,16 +37,16 @@ export default {
         isAuth: false // 是否认证
       },
       {
-        title: '如果学习Vue3.0?',
-        content: '快别更新了，学不动了！',
+        title: '学习Vue3.0?',
+        content: '学不动了，就回家喂猪！',
         logoUrl: '',
         logoContext:'',
         imgUrl: '',
         isAuth: false // 是否认证
       },
       {
-        title: '如果学习Vue3.0?',
-        content: '快别更新了，学不动了！',
+        title: '学习Vue3.0?',
+        content: '学不动了，就回家喂猪！',
         logoUrl: '',
         logoContext:'',
         imgUrl: '',

@@ -15,15 +15,15 @@
       </div>
     </div>
     <div>
-      <div
+      <top-nav-item
         v-for="(item,index) in navList"
+        :type="item.type"
         :key="index"
-        class="nav-link"
+        :active="defaultActive === index"
         @click="handleSelectNav(index, item)"
-        :class="{active: defaultActive === index}"
       >
-        <span class="nav-link-context">{{item.name}}</span>
-      </div>
+        {{item.name}}
+      </top-nav-item>
     </div>
   </div>
 </template>
@@ -33,28 +33,35 @@ import { ref } from 'vue'
 // 路由的使用，通过useRouter获取app所provide的路由
 import { useRouter } from 'vue-router'
 import Icon from "@/components/icon/icon";
+import TopNavItem from "./topNavItem";
 export default {
   name: 'topNav',
-  components: {Icon},
+  components: {
+    TopNavItem,
+    Icon
+  },
   setup() {
     const defaultActive = ref(1)
-
     const navList = ref([
       {
         name: '关注',
-        path: '/attention'
+        path: '/attention',
+        type: 2
       },
       {
         name: '推荐',
-        path: '/'
+        path: '/',
+        type: 1
       },
       {
         name: '热榜',
-        path: '/hotList'
+        path: '/hotList',
+        type: 1
       },
       {
         name: '抗击肺炎',
-        path: '/pneumonia'
+        path: '/pneumonia',
+        type: 1
       }
     ])
     const router = useRouter()
@@ -106,22 +113,6 @@ export default {
             background:#f6f6f6;
           }
         }
-      }
-    }
-    .nav-link {
-      width: 25%;
-      height: 40px;
-      line-height: 40px;
-      color: #8590a6;
-      cursor: pointer;
-      text-align: center;
-      display: inline-block;
-    }
-    .active {
-      color: #444;
-      font-weight: bold;
-      .nav-link-context{
-        border-bottom: 2px solid #444;
       }
     }
     .top-icon {

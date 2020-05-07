@@ -1,7 +1,10 @@
 <template>
   <div>
     <top-nav></top-nav>
-    <div class="home-container">
+    <div class="home-container"
+         @touchstart="handleTouchStart"
+         @touchend="handleTouchEnd"
+    >
       <transition-group
         :name="transitionName"
         :duration="500"
@@ -18,7 +21,7 @@
 <script>
 import TopNav from "@/components/nav/topNav"
 import { transitionName } from '../../mixin/routeTransition'
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 
 export default {
   name: 'Home',
@@ -38,8 +41,26 @@ export default {
       }
       next()
     })
+
+    const routeInfo = useRoute()
+    // console.log(routeInfo)
+    let touchStartX = 0
+    let touchEndX = 0
+    const handleTouchStart = (e) => {
+      touchStartX = e.changedTouches[0].clientX
+    }
+    const handleTouchEnd = (e) => {
+      touchEndX = e.changedTouches[0].clientX
+      if(touchStartX > touchEndX && touchStartX - touchEndX > 50) {
+        // console.log(route)
+        // console.log(route.getRoutes())
+        // console.log(route.currentRoute)
+      }
+    }
     return {
-      transitionName
+      transitionName,
+      handleTouchStart,
+      handleTouchEnd
     }
   }
 }
