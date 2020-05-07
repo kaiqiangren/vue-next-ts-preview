@@ -25,3 +25,17 @@
 .right-leave-to {
   transform: translateX(-100%);
 }
+
+.top-enter-active {
+  transition: transform .5s;
+  transform: translateY(-100%);
+}
+.top-leave-active {
+  transition: transform .5s;
+}
+.top-enter-to {
+  transform: translateY(0);
+}
+.top-leave-to {
+  transform: translateY(-100%);
+}

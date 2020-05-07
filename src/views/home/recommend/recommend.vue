@@ -1,21 +1,25 @@
 <template>
   <div class="recommend-container">
-    <card
-      v-for="(item,index) in cardData"
-      :key="index"
-      :title="item.title"
-      :content="item.content"
-    >
+    <drop-refresh>
+      <card
+        v-for="(item,index) in cardData"
+        :key="index"
+        :title="item.title"
+        :content="item.content"
+      >
 
-    </card>
+      </card>
+    </drop-refresh>
   </div>
 </template>
 
 <script>
 import Card from "@/components/card/card";
 import { reactive } from 'vue'
+import DropRefresh from "../../../components/refresh/drop-refresh";
 export default {
   components: {
+    DropRefresh,
     Card
   },
   setup() {

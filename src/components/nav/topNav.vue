@@ -86,6 +86,7 @@ export default {
     position: fixed;
     box-shadow: 0 1px 3px rgba(26,26,26,.1);
     font-size: 15px;
+    z-index: 100;
     top: 0;
     left: 0;
     width: 100%;

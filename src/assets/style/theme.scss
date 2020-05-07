@@ -1,0 +1,28 @@
+
+// 白天颜色
+$bg-color-night:  #f6f6f6 !default;
+$text-color-night: #000 !default;
+
+// 晚上颜色
+$bg-color-dark:  #000 !default;
+$text-color-dark: #eee !default;
+
+// 切换主题
+@mixin themeChange($theme) {
+  @if($theme == "night") {
+    background: $bg-color-night;
+    color: $text-color-night;
+  }
+  @if($theme == "dark") {
+    background: $bg-color-dark;
+    color: $text-color-dark;
+  }
+}
+
+.night {
+  @include themeChange("night");
+}
+
+.dark {
+  @include themeChange("dark");
+}

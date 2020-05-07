@@ -1,7 +1,7 @@
 <template>
   <span
     class="iconfont"
-    :class="[name, hasInfo? 'has-icon': '']"
+    :class="[props.name, props.hasInfo? 'has-icon': '']"
   >
   </span>
 </template>
@@ -20,8 +20,7 @@ export default {
   },
   setup(props) {
     return {
-      // eslint-disable-next-line vue/no-dupe-keys
-      name: props.name
+      props
     }
   }
 }

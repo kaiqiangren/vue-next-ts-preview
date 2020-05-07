@@ -42,7 +42,7 @@ export default {
       next()
     })
 
-    const routeInfo = useRoute()
+    // const routeInfo = useRoute()
     // console.log(routeInfo)
     let touchStartX = 0
     let touchEndX = 0
