@@ -185,3 +185,20 @@ onUnmounted         | 实例已销毁                                           
 onErrorCaptured     | 错误数据捕捉                                            --
 ```
 
+
+6. 路由
+```js
+// 组件内部路由拦截器的使用方式
+import { useRouter, useRoute } from "vue-router"
+
+setup() {
+  // 组件内路由
+  const router = useRouter()
+  router.beforeEach((to, from, next) => {
+    next()
+  })
+  // 组件内路由信息
+  const route = useRoute()
+}
+
+```

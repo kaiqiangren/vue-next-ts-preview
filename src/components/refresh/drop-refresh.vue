@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onUnmounted, onMounted } from 'vue'
 import Icon from "../icon/icon";
 
 export default {
@@ -39,11 +39,11 @@ export default {
     let scrollTop;
     let startY;
     const handleTouchStart = (e) => {
+      console.log(e)
       scrollTop = document.documentElement.scrollTop
       startY = e.targetTouches[0].pageY
     }
     const handleTouchEnd = () => {
-      // isPull.value = false
       if (isPull.value) {
         emit('refresh')
       }
@@ -58,6 +58,16 @@ export default {
         }
       }
     }
+
+    // onMounted(() => {
+    //   document.body.onscroll = (e) => {
+    //     console.log(document.documentElement.scrollTop, e)
+    //   }
+    // })
+    // onUnmounted(() => {
+    //   document.body.onscroll = null
+    // })
+
     // 处理刷新开始
     const refreshStart = () => {
       isPull.value = true
