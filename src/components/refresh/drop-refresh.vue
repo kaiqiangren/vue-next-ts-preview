@@ -43,7 +43,8 @@ export default {
       scrollTop = document.documentElement.scrollTop
       startY = e.targetTouches[0].pageY
     }
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (e) => {
+      console.log(e)
       if (isPull.value) {
         emit('refresh')
       }
@@ -59,11 +60,11 @@ export default {
       }
     }
 
-    // onMounted(() => {
-    //   document.body.onscroll = (e) => {
-    //     console.log(document.documentElement.scrollTop, e)
-    //   }
-    // })
+    onMounted(() => {
+      document.body.onscroll = () => {
+        console.log(document.documentElement.scrollTop)
+      }
+    })
     // onUnmounted(() => {
     //   document.body.onscroll = null
     // })
