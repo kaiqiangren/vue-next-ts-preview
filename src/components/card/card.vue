@@ -48,7 +48,7 @@ export default {
     height: 140px;
     background: #fff;
     box-shadow: 0 1px 0.8vw rgba(26, 26, 26, 0.1);
-    margin: 10px 0;
+    margin: 8px 0;
     box-sizing: border-box;
     padding: 10px;
     .card-header {

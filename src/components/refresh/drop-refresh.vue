@@ -11,6 +11,9 @@
       </div>
     </transition>
     <slot></slot>
+    <div class="pull-text">
+      {{props.loadingBottomText}}
+    </div>
   </div>
 </template>
 
@@ -25,7 +28,11 @@ export default {
     loadingText: {
       type: String,
       default: '努力加载中'
-    }
+    },
+    loadingBottomText: {
+      type: String,
+      default: '没有更多数据啦!'
+    },
   },
   setup(props, { emit }) {
     const isPull = ref(false)
@@ -37,15 +44,16 @@ export default {
     }
     const handleTouchEnd = () => {
       // isPull.value = false
-      // if (scrollTop === 0) {
-      //   emit('refresh')
-      // }
+      if (isPull.value) {
+        emit('refresh')
+      }
     }
     const handleTouchMove = (e) => {
       e.stopPropagation()
       const currentY = e.targetTouches[0].pageY
+      const diff = Math.abs(startY - currentY)
       if (scrollTop === 0) {
-        if (startY <= currentY) {
+        if (startY <= currentY && diff > 80) {
           isPull.value = true
         }
       }

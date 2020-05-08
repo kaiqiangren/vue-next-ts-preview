@@ -1,8 +1,8 @@
 <template>
   <div class="recommend-container">
-    <button @click="loadData">点击加载数据</button>
     <drop-refresh
       ref="dropRef"
+      @refresh="handleRefresh"
     >
       <card
         v-for="(item,index) in cardData"
@@ -62,8 +62,8 @@ export default {
         isAuth: false // 是否认证
       }
     ])
-    const loadData = () => {
-      dropRef.value.refreshStart()
+    // 处理数据刷新
+    const handleRefresh = () => {
       setTimeout(() => {
         dropRef.value.refreshComplete()
         cardData.push({
@@ -75,12 +75,11 @@ export default {
           isAuth: false // 是否认证
         })
       },1000)
-
     }
     return {
       dropRef,
       cardData,
-      loadData
+      handleRefresh
     }
   }
 }
