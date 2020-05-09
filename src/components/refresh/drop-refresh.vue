@@ -6,14 +6,16 @@
     @touchmove="handleTouchMove"
   >
     <transition name="top">
-      <div class="pull-text" v-show="isPull">
+      <div class="pull-text" v-show="loading">
         {{props.loadingText}}<div class="rotate"><icon  name="jiazai"></icon></div>
       </div>
     </transition>
     <slot></slot>
     <div class="pull-text">
-      {{props.loadingBottomText}}
+      <span  v-show="!loadingFooter">{{props.loadingBottomText}}</span>
+      <div class="rotate"  v-show="loadingFooter"><icon  name="jiazai"></icon></div>
     </div>
+
   </div>
 </template>
 
@@ -35,57 +37,62 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const isPull = ref(false)
+    // 顶部加载动画
+    const loading = ref(false)
+    // 底部加载动画
+    const loadingFooter = ref(false)
+
+
     let scrollTop;
     let startY;
-    const handleTouchStart = (e) => {
-      console.log(e)
-      scrollTop = document.documentElement.scrollTop
-      startY = e.targetTouches[0].pageY
-    }
-    const handleTouchEnd = (e) => {
-      console.log(e)
-      if (isPull.value) {
-        emit('refresh')
-      }
-    }
-    const handleTouchMove = (e) => {
-      e.stopPropagation()
-      const currentY = e.targetTouches[0].pageY
-      const diff = Math.abs(startY - currentY)
-      if (scrollTop === 0) {
-        if (startY <= currentY && diff > 80) {
-          isPull.value = true
+    const methods = {
+      handleTouchStart: (e) => {
+        scrollTop = document.documentElement.scrollTop
+        startY = e.targetTouches[0].pageY
+      },
+      handleTouchEnd: () => {
+        if (loading.value) {
+          emit('refresh')
         }
-      }
+      },
+      handleTouchMove: (e) => {
+        e.stopPropagation()
+        const currentY = e.targetTouches[0].pageY
+        const diff = Math.abs(startY - currentY)
+        if (scrollTop === 0) {
+          if (startY <= currentY && diff > 80) {
+            loading.value = true
+          }
+        }
+      },
+      refreshStart: () => {
+        loading.value = true
+      },
+      refreshComplete: () => {
+        loading.value = false
+      },
+
     }
 
     onMounted(() => {
       document.body.onscroll = () => {
-        console.log(document.documentElement.scrollTop)
+        // 距离底部的距离
+        const bottomDistance = document.documentElement.offsetHeight - window.innerHeight - document.documentElement.scrollTop
+        if (bottomDistance <= 50) {
+          loadingFooter.value = true
+          emit('refresh')
+        }
       }
     })
-    // onUnmounted(() => {
-    //   document.body.onscroll = null
-    // })
-
-    // 处理刷新开始
-    const refreshStart = () => {
-      isPull.value = true
-    }
-    // 处理刷新完成
-    const refreshComplete = () => {
-      isPull.value = false
-    }
+    onUnmounted(() => {
+      document.body.onscroll = null
+    })
 
     return {
       props,
-      isPull,
-      handleTouchStart,
-      handleTouchEnd,
-      handleTouchMove,
-      refreshStart,
-      refreshComplete
+      loading,
+      loadingFooter,
+      ...methods
     }
   }
 }
@@ -109,6 +116,7 @@ export default {
     animation:loading 1s infinite linear;
   }
   .pull-container {
+    padding: 5px 0;
     .pull-text {
       text-align: center;
       height: 20px;
