@@ -13,12 +13,14 @@ const store = createStore({
   },
   actions: {
     asyncGetUserInfo ({ commit }) {
-      console.log(commit)
+      setTimeout(() => {
+        commit("getUserInfo", +new Date() + 'action')
+      },2000)
     }
   },
   getters: {
     userInfoGetter (state) {
-      return state.userInfo
+      return state.userInfo.name
     }
   }
 })
