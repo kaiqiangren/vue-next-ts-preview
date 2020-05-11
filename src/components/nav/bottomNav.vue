@@ -58,7 +58,7 @@ export default {
       {
         id: 5,
         name: '我的',
-        path: '/',
+        path: '/self',
         icon: 'user',
         activeIcon: 'yonghu'
       }

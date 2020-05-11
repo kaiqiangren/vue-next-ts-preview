@@ -20,8 +20,6 @@
 import Card from "@/components/card/card";
 import { reactive, ref } from 'vue'
 import DropRefresh from "../../../components/refresh/drop-refresh";
-// 组件内使用vuex
-import { useStore } from 'vuex'
 export default {
   components: {
     DropRefresh,

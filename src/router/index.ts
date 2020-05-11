@@ -46,6 +46,11 @@ const routes: any = [
     path: '/vip',
     name: 'Vip',
     component: () => import(/* webpackChunkName: "vip" */ '../views/vip/vip.vue'),
+  },
+  {
+    path: '/self',
+    name: 'Self',
+    component: () => import(/* webpackChunkName: "self" */ '../views/self/self.vue'),
   }
 ]
 
