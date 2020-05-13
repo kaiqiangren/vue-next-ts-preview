@@ -3,6 +3,7 @@
     <drop-refresh
       ref="dropRef"
       @refresh="handleRefresh"
+      @infinite="handleInfinite"
     >
       <card
         v-for="(item,index) in cardData"
@@ -76,10 +77,16 @@ export default {
         })
       },1000)
     }
+    const handleInfinite = () => {
+      setTimeout(() => {
+        dropRef.value.infiniteComplete()
+      },1000)
+    }
     return {
       dropRef,
       cardData,
-      handleRefresh
+      handleRefresh,
+      handleInfinite
     }
   }
 }

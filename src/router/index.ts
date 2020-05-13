@@ -13,7 +13,8 @@ const routes: any = [
         name: 'Recommend',
         component: () => import(/* webpackChunkName: "recommend" */ '../views/home/recommend/recommend.vue'),
         meta: {
-          index: 1
+          index: 1,
+          keepAlive:true
         }
       },
       {
@@ -21,7 +22,8 @@ const routes: any = [
         name: 'Attention',
         component: () => import(/* webpackChunkName: "attention" */ '../views/home/attention/attention.vue'),
         meta: {
-          index: 0
+          index: 0,
+          keepAlive:true
         }
       },
       {
@@ -29,7 +31,8 @@ const routes: any = [
         name: 'HotList',
         component: () => import(/* webpackChunkName: "hostList" */ '../views/home/hotList/hotList.vue'),
         meta: {
-          index: 2
+          index: 2,
+          keepAlive:true
         }
       },
       {
@@ -37,7 +40,8 @@ const routes: any = [
         name: 'Pneumonia',
         component: () => import(/* webpackChunkName: "pneumonia" */ '../views/home/pneumonia/pneumonia.vue'),
         meta: {
-          index: 4
+          index: 4,
+          keepAlive:false
         }
       }
     ]

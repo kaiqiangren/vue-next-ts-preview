@@ -12,7 +12,10 @@
         type="transition"
         :appear="true"
       >
-        <router-view key="home-router-key"/>
+        <keep-alive v-if="route.meta.keepAlive">
+          <router-view  key="home-router-alive"/>
+        </keep-alive>
+        <router-view v-else key="home-router-key"/>
       </transition-group>
     </div>
   </div>
@@ -30,8 +33,8 @@ export default {
   },
   setup () {
     // 组件内路由获取方式
-    const route = useRouter()
-    route.beforeEach((to, from, next) => {
+    const router = useRouter()
+    router.beforeEach((to, from, next) => {
       if (to.meta.index < from.meta.index) {
         transitionName.value = 'left'
       } else if (to.meta.index > from.meta.index){
@@ -42,8 +45,8 @@ export default {
       next()
     })
 
-    // const routeInfo = useRoute()
-    // console.log(routeInfo)
+    const route = useRoute()
+    console.log(route.meta.keepAlive)
     let touchStartX = 0
     let touchEndX = 0
     const handleTouchStart = (e) => {
@@ -58,6 +61,7 @@ export default {
       }
     }
     return {
+      route,
       transitionName,
       handleTouchStart,
       handleTouchEnd

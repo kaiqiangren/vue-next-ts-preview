@@ -7,7 +7,7 @@
   >
     <transition name="top">
       <div class="pull-text" v-show="loading">
-        {{props.loadingText}}<div class="rotate"><icon  name="jiazai"></icon></div>
+        {{props.refreshText}}<div class="rotate"><icon  name="jiazai"></icon></div>
       </div>
     </transition>
     <slot></slot>
@@ -15,7 +15,6 @@
       <span  v-show="!loadingFooter">{{props.loadingBottomText}}</span>
       <div class="rotate"  v-show="loadingFooter"><icon  name="jiazai"></icon></div>
     </div>
-
   </div>
 </template>
 
@@ -27,7 +26,7 @@ export default {
   name: 'DropRefresh',
   components: {Icon},
   props: {
-    loadingText: {
+    refreshText: {
       type: String,
       default: '努力加载中'
     },
@@ -65,22 +64,32 @@ export default {
           }
         }
       },
+      // 开始下拉刷新
       refreshStart: () => {
         loading.value = true
       },
+      // 下拉刷新完成
       refreshComplete: () => {
         loading.value = false
       },
-
+      //
+      infiniteStart: () => {
+        loadingFooter.value = true
+      },
+      // 滚动刷新完成
+      infiniteComplete: () => {
+        loadingFooter.value = false
+      }
     }
 
     onMounted(() => {
       document.body.onscroll = () => {
         // 距离底部的距离
-        const bottomDistance = document.documentElement.offsetHeight - window.innerHeight - document.documentElement.scrollTop
+        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+        const bottomDistance = document.documentElement.offsetHeight - window.innerHeight - scrollTop
         if (bottomDistance <= 50) {
           loadingFooter.value = true
-          emit('refresh')
+          emit('infinite')
         }
       }
     })
