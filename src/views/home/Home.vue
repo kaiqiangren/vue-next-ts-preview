@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import TopNav from "@/components/nav/topNav"
-import { transitionName } from '../../mixin/routeTransition'
+import TopNav from '@/components/nav/topNav'
+import { transitionName } from '@/mixin/routeTransition'
 import { useRouter, useRoute } from "vue-router"
 
 export default {

@@ -72,7 +72,7 @@ export default {
       refreshComplete: () => {
         loading.value = false
       },
-      //
+      // 滚动刷新开始
       infiniteStart: () => {
         loadingFooter.value = true
       },

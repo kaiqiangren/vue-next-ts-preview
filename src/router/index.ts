@@ -1,12 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Home from '../views/home/Home.vue'
+interface RoutesType {
+  path: string;
+  name: string;
+  component: () => {};
+  meta?: {
+    index?: number;
+    keepAlive?: boolean;
+  };
+  children?: RoutesType[];
+}
 
-const routes: any = [
+const routes: RoutesType[] = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import(/* webpackChunkName: "home" */ '../views/home/Home.vue'),
     children: [
       {
         path: '',
@@ -14,7 +23,7 @@ const routes: any = [
         component: () => import(/* webpackChunkName: "recommend" */ '../views/home/recommend/recommend.vue'),
         meta: {
           index: 1,
-          keepAlive:true
+          keepAlive:false
         }
       },
       {
@@ -23,7 +32,7 @@ const routes: any = [
         component: () => import(/* webpackChunkName: "attention" */ '../views/home/attention/attention.vue'),
         meta: {
           index: 0,
-          keepAlive:true
+          keepAlive:false
         }
       },
       {
@@ -32,7 +41,7 @@ const routes: any = [
         component: () => import(/* webpackChunkName: "hostList" */ '../views/home/hotList/hotList.vue'),
         meta: {
           index: 2,
-          keepAlive:true
+          keepAlive:false
         }
       },
       {
