@@ -202,3 +202,91 @@ setup() {
 }
 
 ```
+
+7.vuex
+> 创建Store
+```js
+import { createStore } from 'vuex'
+
+const store = createStore({
+  state: {
+    userInfo: {
+      name:'renkq'
+    }
+  },
+  mutations: {
+    getUserInfo (state, name) {
+      state.userInfo.name = name
+    }
+  },
+  actions: {
+    asyncGetUserInfo ({ commit }) {
+      setTimeout(() => {
+        commit("getUserInfo", +new Date() + 'action')
+      },2000)
+    }
+  },
+  getters: {
+    userInfoGetter (state) {
+      return state.userInfo.name
+    }
+  }
+})
+
+export default store
+
+```
+> 组件内使用store
+```js
+import {
+  useStore,
+  // mapState,
+  // mapMutations,
+  // mapActions,
+  // mapGetters
+} from 'vuex'
+
+export default {
+  name: 'self',
+  setup() {
+    const store = useStore()
+    console.log(store, 'store')
+    console.log(store.getters, 'getters')
+    const state = store.state
+    const getters = store.getters
+    // console.log(mapState(store.state),'mapState')
+    // console.log(mapMutations(store._mutations),'mapMutations')
+    // console.log(mapActions(store._actions),'mapActions')
+    // console.log(mapGetters(store.getters),'mapGetters')
+    const methods = {
+      // 处理commit
+      handleMutation: () => {
+        store.commit('getUserInfo', +new Date)
+      },
+      // 处理dispatch
+      handleAction: () => {
+        store.dispatch('asyncGetUserInfo')
+      }
+    }
+    return {
+      state,
+      getters,
+      ...methods
+    }
+  }
+}
+```
+
+8. v-model
+
+```js
+// 自定义v-model组件时，需要使用update:modelValue事件进行触发
+setup(props, { emit }){
+   const handleClick = () => {
+      emit('update:modelValue', params)
+   }
+   return {
+      handleClick
+  }
+}
+```

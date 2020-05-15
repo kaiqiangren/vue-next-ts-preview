@@ -3,17 +3,26 @@
     <div class="attention-content">
       {{msg}}
     </div>
+    {{modelTest}}
+    <container v-model="modelTest"></container>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import Container from "../../../components/container/container";
 export default {
   name: 'attention',
+  components: {Container},
   setup () {
     const msg = ref('Hello attention')
+    const modelTest = reactive(['modelTest'])
+    const route  = useRoute();
+    console.log(route.params)
     return {
-      msg
+      msg,
+      modelTest
     }
   }
 }

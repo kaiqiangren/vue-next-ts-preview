@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <slot></slot>
+    <button @click="handleClick">点击emit</button>
   </div>
 </template>
 
@@ -9,8 +10,22 @@
 
 export default {
   name: 'container',
-  setup() {
-    return {}
+  props: {
+    value: {
+      type:Array,
+      default () {
+        return []
+      }
+    }
+  },
+  setup(props, { emit }) {
+    // 自定义v-model组件时，需要使用update:modelValue事件进行触发
+    const handleClick = () => {
+      emit('update:modelValue', ['I am a container!'])
+    }
+    return {
+      handleClick
+    }
   }
 }
 </script>

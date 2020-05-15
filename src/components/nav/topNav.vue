@@ -45,7 +45,7 @@ export default {
     const navList = ref([
       {
         name: '关注',
-        path: '/attention',
+        path: '/attention/123',
         type: 2
       },
       {

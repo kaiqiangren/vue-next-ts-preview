@@ -27,7 +27,7 @@ const routes: RoutesType[] = [
         }
       },
       {
-        path: 'attention',
+        path: 'attention/:id',
         name: 'Attention',
         component: () => import(/* webpackChunkName: "attention" */ '../views/home/attention/attention.vue'),
         meta: {
@@ -68,6 +68,7 @@ const routes: RoutesType[] = [
 ]
 
 const router = createRouter({
+  // createWebHistory 第一个参数为以前路由的base
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
