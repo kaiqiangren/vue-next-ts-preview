@@ -5,7 +5,7 @@ import store from './store/index'
 import 'normalize.css'
 import './assets/iconfont/iconfont.css'
 import './assets/style/style.scss'
-import { customDirective } from './directive/directive'
+// import { customDirective } from './directive/directive'
 // 主题样式
 // import './assets/style/theme.scss'
 
