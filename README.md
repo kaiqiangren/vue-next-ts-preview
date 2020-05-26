@@ -290,3 +290,44 @@ setup(props, { emit }){
   }
 }
 ```
+
+9. directive
+> 定义指令
+```js
+import { ObjectDirective } from 'vue'
+// 使用ObjectDirective声明指令类型即可，因为源码内部指定了默认类型说明
+export const customDirective: ObjectDirective = {
+  beforeMount(el, binding, vnode, prevVnode) {
+    console.log(el, binding, vnode, prevVnode)
+  },
+  mounted() { console.log('mounted') },
+  beforeUpdate() { console.log('beforeUpdate') },
+  updated() { console.log('updated') },
+  beforeUnmount() { console.log('beforeUnmount') },
+  unmounted() { console.log('unmounted') }
+}
+
+
+```
+> 全局注册指令
+```js
+const app = createApp(App)
+app.use(router)
+app.use(store)
+app.directive('custom', customDirective)
+app.mount('#app')
+
+```
+
+> 组件内使用指令
+```js
+import { customDirective } from '../../directive/directive'
+export default {
+  setup() {
+    return {}
+  },
+  directives: {
+    custom: customDirective
+  }
+}
+```
