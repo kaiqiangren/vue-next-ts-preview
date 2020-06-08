@@ -11,10 +11,12 @@ https://github.com/kaiqiangren/vue-next-ts-preview
 3. 使用Proxy进行响应式变量定义，性能提高2-3倍
 4. 可在Vue2.0中单独使用composition-api插件，或者直接用它开发插件
 5. 对typescript支持更加友好
+6. 面向未来：对于尤雨溪最近创新的vite开发服务器（舍弃webpack、底层为Koa框架的高性能开发服务器）,直接使用的Vue3.0语法
 ### 缺点:
 1. 只支持IE11及以上
 2. 对于习惯了Vue2.0开发模式的开发者来说，增加了心智负担，对开发者代码组织能力有考验
 > 同时也是能力提升的机会吧，特别喜欢Vue作者的设计初心:让开发者随着框架一起成长!
+
 
 ## 二、Vue3.0正确的打开方式
 ### 1、项目搭建
@@ -41,9 +43,10 @@ vue add vue-next
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "vue": "^3.0.0-beta.4",
-    "vue-router": "^4.0.0-alpha.7",
-    "vuex": "^4.0.0-alpha.1"
+     "normalize.css": "^8.0.1",
+     "vue": "^3.0.0-beta.14",
+     "vue-router": "^4.0.0-alpha.12",
+     "vuex": "^4.0.0-beta.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.26.0",
@@ -118,7 +121,9 @@ const computedCount2 = computed({
         return writeCount.value =  val + 2
       }
 })
-// computedCount2 
+
+// 可以直接修改computed的值，在Vue2.x中无法修改
+// computedCount2 = 123 
 ```
 
 3. watch & watchEffect
