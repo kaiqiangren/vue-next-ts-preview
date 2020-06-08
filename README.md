@@ -355,3 +355,27 @@ import { nextTick, onBeforeMount } from 'vue'
   }
 }
 ```
+
+11. 定义组件defineAsyncComponent & defineComponent
+
+> 同步组件与异步组件的区别:
+> 同步组件：在组件加载时自动加载；
+> 异步组件：在渲染时加载;
+
+```js
+// 一、定义同步组件
+const syncComponent = defineComponent(() => import('./syncComponents.vue'))
+
+
+// 二、定义异步组件
+// 方式1 
+const asyncComponent = defineAsyncComponent({
+  loader: () => import("./asyncComponents.vue"),
+  loadingComponent: loadingComponent,
+  errorComponent: loadingComponent,
+  delay: 2000,
+  timeout: 3000
+});
+// 方式2
+const asyncComponent = defineAsyncComponent(() => import('./syncComponents.vue'));
+```
