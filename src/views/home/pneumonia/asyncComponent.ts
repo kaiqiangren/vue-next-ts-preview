@@ -11,5 +11,9 @@ export const asyncComponent = defineAsyncComponent({
 });
 
 // 同步组件
-export const syncComponent = defineComponent(() => import('./syncComponents.vue'))
+export const syncComponent = defineComponent({
+  setup () {
+    return () => `我是同步组件`
+  }
+})
 

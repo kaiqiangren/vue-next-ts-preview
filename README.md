@@ -364,7 +364,11 @@ import { nextTick, onBeforeMount } from 'vue'
 
 ```js
 // 一、定义同步组件
-const syncComponent = defineComponent(() => import('./syncComponents.vue'))
+const syncComponent = defineComponent({
+  setup () {
+    return () => `我是同步组件`
+  }
+})
 
 
 // 二、定义异步组件
