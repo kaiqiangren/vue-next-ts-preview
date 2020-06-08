@@ -51,7 +51,7 @@ export default {
       {
         id: 4,
         name: '消息',
-        path: '/',
+        path: '/notify',
         icon: 'bell',
         activeIcon: 'tongzhi'
       },

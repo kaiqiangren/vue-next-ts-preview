@@ -1,6 +1,6 @@
 {
-  "name": "vue3-app-ts-2",
-  "version": "0.1.0",
+  "name": "vue-next-ts-preview",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "vue-cli-service build",
@@ -10,9 +10,9 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "normalize.css": "^8.0.1",
-    "vue": "^3.0.0-beta.4",
-    "vue-router": "^4.0.0-alpha.7",
-    "vuex": "^4.0.0-beta.1"
+    "vue": "^3.0.0-beta.14",
+    "vue-router": "^4.0.0-alpha.12",
+    "vuex": "^4.0.0-beta.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.26.0",

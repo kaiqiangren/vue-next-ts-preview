@@ -64,6 +64,11 @@ const routes: RoutesType[] = [
     path: '/self',
     name: 'Self',
     component: () => import(/* webpackChunkName: "self" */ '../views/self/self.vue'),
+  },
+  {
+    path: '/notify',
+    name: 'Notify',
+    component: () => import(/* webpackChunkName: "notify" */ '../views/notify/notify.vue'),
   }
 ]
 

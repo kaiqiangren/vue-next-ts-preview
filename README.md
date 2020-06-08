@@ -22,14 +22,16 @@ https://github.com/kaiqiangren/vue-next-ts-preview
 ```npm
 npm i @vue/cli -g
 ```
-2. 然后执行vue add vue-next向项目添加Vue3.0
+2. 然后在创建项目后，执行vue add vue-next向项目添加Vue3.0
 ```npm
+vue create [projectName]
+cd [projectName]
 vue add vue-next
 ```
 3. 如下例子为使用typescript + Vue3.0 开发的项目依赖，也可以直接使用
 ```json
 {
-  "name": "vue3-app-ts",
+  "name": "vue-next-ts-preview",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -328,6 +330,23 @@ export default {
   },
   directives: {
     custom: customDirective
+  }
+}
+```
+
+10. nextTick
+```js
+import { nextTick, onBeforeMount } from 'vue'
+
+{
+  setup () {
+    
+    onBeforeMount(() => {
+      nextTick(() => {
+        
+      })
+    })
+    
   }
 }
 ```
