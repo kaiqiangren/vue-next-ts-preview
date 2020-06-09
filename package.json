@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "normalize.css": "^8.0.1",
+    "socket.io-client": "^2.3.0",
     "vue": "^3.0.0-beta.14",
     "vue-router": "^4.0.0-alpha.12",
     "vuex": "^4.0.0-beta.2"
