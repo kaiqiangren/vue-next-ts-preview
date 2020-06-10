@@ -5,6 +5,12 @@ import store from './store/index'
 import 'normalize.css'
 import './assets/iconfont/iconfont.css'
 import './assets/style/style.scss'
+// h5调试
+import Vconsole from 'vconsole'
+console.log(process.env.NODE_ENV);
+if(process.env.NODE_ENV === 'development') {
+  new Vconsole()
+}
 // import { customDirective } from './directive/directive'
 // 主题样式
 // import './assets/style/theme.scss'

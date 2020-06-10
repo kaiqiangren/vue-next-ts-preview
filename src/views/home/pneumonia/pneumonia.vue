@@ -35,7 +35,6 @@ export default {
         console.log(message)
       })
     }
-
     return {
       show,
       handleCLick,
