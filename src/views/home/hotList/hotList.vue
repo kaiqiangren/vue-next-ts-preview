@@ -1,6 +1,7 @@
 <template>
   <div class="hot-list-container">
     <button @click="getMediaStream">获取流视频</button>
+    <button @click="getDisplay">抓取桌面</button>
     <video class="view-container" ref="localVideo" autoplay playsinline></video>
     <video class="view-container" ref="remoteVideo" autoplay playsinline></video>
   </div>
@@ -15,8 +16,6 @@ export default {
     const remoteVideo = ref(null)
 
     const getMediaStream = () => {
-      // 本地创建RTC 连接
-      // const localPc = new window.RTCPeerConnection(localVideo)
       // 抓取本地视频流
       window.navigator.mediaDevices.getUserMedia({
         // 是否抓取视频
@@ -27,19 +26,28 @@ export default {
         audio:true, //是否抓取音频
       }).then((stream) => {
         localVideo.value.srcObject = stream;
-        // localPc.addStream(stream)
-        // localPc.createOffer().then(() => {
-        //
-        // })
       })
     }
+
+    // 抓取桌面信息
+    const getDisplay = () => {
+      window.navigator.mediaDevices.getDisplayMedia({
+        video: true, // 是否抓取视频
+        audio:true //是否抓取音频
+      }).then(stream => {
+        remoteVideo.value.srcObject = stream;
+      })
+    }
+
+
     onMounted(() => {
-      getMediaStream()
+      // getMediaStream()
     })
     return {
       localVideo,
       remoteVideo,
-      getMediaStream
+      getMediaStream,
+      getDisplay
     }
   }
 }
