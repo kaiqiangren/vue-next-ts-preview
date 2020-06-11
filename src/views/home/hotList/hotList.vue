@@ -1,9 +1,11 @@
 <template>
   <div class="hot-list-container">
     <button @click="getMediaStream">获取流视频</button>
+    <button @click="closeMedia">关闭视频流</button>
+
+    <video controls class="view-container" ref="localVideo" autoplay playsinline></video>
     <button @click="getDisplay">抓取桌面</button>
-    <video class="view-container" ref="localVideo" autoplay playsinline></video>
-    <video class="view-container" ref="remoteVideo" autoplay playsinline></video>
+    <video controls class="view-container" ref="remoteVideo" autoplay playsinline></video>
   </div>
 </template>
 
@@ -15,20 +17,26 @@ export default {
     const localVideo = ref(null)
     const remoteVideo = ref(null)
 
+    const constraints = {
+      video: {
+        width: 375,
+        height: 300
+      },
+      audio:true,
+    }
+
     const getMediaStream = () => {
       // 抓取本地视频流
-      window.navigator.mediaDevices.getUserMedia({
-        // 是否抓取视频
-        video: {
-          width: 375,
-          height: 300
-        },
-        audio:true, //是否抓取音频
-      }).then((stream) => {
+      window.navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
         localVideo.value.srcObject = stream;
       })
     }
-
+    // 关闭摄像头
+    const closeMedia = () => {
+      constraints.video = false
+      constraints.audio = false
+      localVideo.value.srcObject = null
+    }
     // 抓取桌面信息
     const getDisplay = () => {
       window.navigator.mediaDevices.getDisplayMedia({
@@ -47,7 +55,8 @@ export default {
       localVideo,
       remoteVideo,
       getMediaStream,
-      getDisplay
+      getDisplay,
+      closeMedia
     }
   }
 }

@@ -149,6 +149,24 @@ const data = reactive({
 watch(() => data.tableData, (now, prev) => {
    console.log(now, prev, 'tableData')
 })
+
+// 监听多个参数- composition-api中无法使用
+let position = reactive({
+    x: 1,
+    y: 1
+  })
+ watch([
+        () => position.x,
+        () => position.y,
+      ], ([x1, y1], [nx1, ny1]) => {
+        console.log('x1,y1', x1, y1)
+        console.log('nx1,ny1', nx1, ny1)
+      },
+      {
+        flush: 'post', // 默认, 在视图渲染后触发
+        // flush: 'pre', // 在视图渲染之前触发
+        // flush: 'sync' // 无阻塞，异步触发
+      })
 ```
 
 4. provide & inject
